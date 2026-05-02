@@ -1,0 +1,193 @@
+{
+  "categories": {
+    "backend": {
+      "label": "Backend Engineering",
+      "template": "You are a {role}. {task} using {tech}. Return output in {format}. No explanation.",
+      "variables": {
+        "role": [
+          "Senior Backend Engineer",
+          "API Architect",
+          "Microservices Specialist",
+          "System Design Engineer",
+          "Backend Performance Expert"
+        ],
+        "task": [
+          "Design a RESTful API for user authentication",
+          "Implement rate limiting for a high-traffic endpoint",
+          "Build a caching layer for database queries",
+          "Create a webhook processing pipeline",
+          "Design an event-driven notification system",
+          "Implement a file upload service with validation",
+          "Build a background job processing system"
+        ],
+        "tech": [
+          "Node.js and Express",
+          "Python FastAPI",
+          "Go with Gin framework",
+          "Java Spring Boot",
+          "Rust with Actix",
+          "C# .NET Core"
+        ],
+        "format": [
+          "JSON schema with OpenAPI 3.0 specification",
+          "Markdown architecture document",
+          "YAML configuration files",
+          "Complete code with inline documentation",
+          "Step-by-step implementation guide"
+        ]
+      }
+    },
+    "frontend": {
+      "label": "Frontend Engineering",
+      "template": "You are a {role}. {task} using {tech}. Return output in {format}. No explanation.",
+      "variables": {
+        "role": [
+          "Senior Frontend Developer",
+          "UI/UX Engineer",
+          "React Specialist",
+          "Performance Optimization Expert",
+          "Accessibility Advocate",
+          "Design Systems Engineer"
+        ],
+        "task": [
+          "Build a responsive dashboard with real-time data",
+          "Implement a virtualized list for large datasets",
+          "Create a form validation system with custom rules",
+          "Design a theme switching mechanism with dark mode",
+          "Optimize bundle size and implement code splitting",
+          "Build an accessible modal system with focus trapping",
+          "Implement infinite scroll with skeleton loaders"
+        ],
+        "tech": [
+          "React with TypeScript",
+          "Vue 3 with Composition API",
+          "Svelte with SvelteKit",
+          "Angular with NgRx",
+          "Next.js with App Router",
+          "Remix with React Router"
+        ],
+        "format": [
+          "Component code with PropTypes",
+          "Step-by-step tutorial with code examples",
+          "Technical specification document",
+          "Complete implementation with tests",
+          "Performance audit report with metrics"
+        ]
+      }
+    },
+    "ai_agent": {
+      "label": "AI Agent Engineering",
+      "template": "You are a {role}. {task} using {tech}. Return output in {format}. No explanation.",
+      "variables": {
+        "role": [
+          "AI Systems Architect",
+          "Machine Learning Engineer",
+          "LLM Integration Specialist",
+          "Prompt Engineering Expert",
+          "AI Safety Researcher",
+          "Conversational AI Designer"
+        ],
+        "task": [
+          "Design a multi-agent workflow for code review",
+          "Implement retrieval-augmented generation for Q&A",
+          "Build an autonomous research assistant",
+          "Create a sentiment analysis pipeline for customer feedback",
+          "Develop a function-calling agent for API orchestration",
+          "Design a document summarization system with citations",
+          "Build a code generation assistant with linting"
+        ],
+        "tech": [
+          "LangChain with OpenAI",
+          "LlamaIndex with local LLMs",
+          "CrewAI with multi-agent collaboration",
+          "Semantic Kernel with Azure AI",
+          "AutoGen with Microsoft framework",
+          "Haystack with HuggingFace models"
+        ],
+        "format": [
+          "Agent architecture diagram with Mermaid",
+          "Production-ready Python code",
+          "System prompt templates with variables",
+          "Evaluation metrics report with benchmarks",
+          "Deployment guide with Docker configuration"
+        ]
+      }
+    },
+    "devops": {
+      "label": "DevOps Engineering",
+      "template": "You are a {role}. {task} using {tech}. Return output in {format}. No explanation.",
+      "variables": {
+        "role": [
+          "DevOps Engineer",
+          "Site Reliability Engineer",
+          "Cloud Infrastructure Architect",
+          "CI/CD Pipeline Specialist",
+          "Security Operations Engineer",
+          "Platform Engineer"
+        ],
+        "task": [
+          "Design a zero-downtime deployment strategy",
+          "Implement infrastructure as code for multi-region setup",
+          "Build a monitoring and alerting system",
+          "Create a container orchestration workflow",
+          "Automate secrets management and rotation",
+          "Design a disaster recovery plan with automated failover",
+          "Implement GitOps with progressive delivery"
+        ],
+        "tech": [
+          "Terraform with AWS",
+          "Kubernetes with Helm",
+          "GitHub Actions with Docker",
+          "Ansible with Azure",
+          "Pulumi with GCP",
+          "ArgoCD with Kubernetes"
+        ],
+        "format": [
+          "Terraform modules with documentation",
+          "Pipeline YAML configurations",
+          "Runbook with troubleshooting steps",
+          "Architecture decision records",
+          "Cost optimization analysis with recommendations"
+        ]
+      }
+    },
+    "database": {
+      "label": "Database Engineering",
+      "template": "You are a {role}. {task} using {tech}. Return output in {format}. No explanation.",
+      "variables": {
+        "role": [
+          "Database Architect",
+          "Data Engineering Lead",
+          "Performance Tuning Specialist",
+          "Migration Strategy Expert",
+          "Data Security Engineer",
+          "Distributed Systems Engineer"
+        ],
+        "task": [
+          "Design a scalable schema for multi-tenant SaaS",
+          "Implement full-text search with fuzzy matching",
+          "Build a data pipeline for real-time analytics",
+          "Optimize slow queries with indexing strategy",
+          "Design a backup and disaster recovery plan",
+          "Implement data partitioning for time-series data",
+          "Design a read replica strategy with lag monitoring"
+        ],
+        "tech": [
+          "PostgreSQL with pgvector",
+          "MongoDB with aggregation pipelines",
+          "Redis with Redis Streams",
+          "Elasticsearch with Kibana",
+          "Cassandra with DataStax",
+          "TimescaleDB with PostgreSQL"
+        ],
+        "format": [
+          "SQL migration scripts with comments",
+          "ER diagrams with PlantUML",
+          "Performance benchmark report with query plans",
+          "Data model documentation with rationale",
+          "Query optimization guide with before/after metrics"
+        ]
+      }
+    }
+  }
+}
