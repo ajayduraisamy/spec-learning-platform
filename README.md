@@ -1,6 +1,3 @@
-<p align="center">
-  ⭐ If you find this project useful, please consider starring it!
-</p>
 
 <p align="center">
   <h1 align="center">Spec Engineering Platform</h1>
@@ -185,6 +182,11 @@ Whether it's a typo fix, a new lesson, or a feature enhancement — every contri
 This project is licensed under the [MIT License](LICENSE).
 
 ---
+
+<p align="center">
+  ⭐ If you find this project useful, please consider starring it!
+</p>
+
 
 <p align="center">
   Built with Next.js, React, and a lot of ☕
