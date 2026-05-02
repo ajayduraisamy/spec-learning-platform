@@ -49,14 +49,14 @@ export default function MultiAgentSystemsPage() {
           <div className="text-[var(--accent-text)]">AGENT SYSTEM:</div>
           <div className="mb-2">Content Creation Pipeline v2.1</div>
           <div className="text-[var(--accent-text)]">COORDINATOR ROLE:</div>
-          <div className="mb-2">Decompose "create 1000-word blog post on {topic}" into subtasks: [Research recent papers, Draft outline, Write full post, Edit for clarity, Run SEO check]. Assign subtasks sequentially, wait for completion before proceeding.</div>
+          <div className="mb-2">Decompose "create 1000-word blog post on {`{topic}`}" into subtasks: [Research recent papers, Draft outline, Write full post, Edit for clarity, Run SEO check]. Assign subtasks sequentially, wait for completion before proceeding.</div>
           <div className="text-[var(--accent-text)]">WORKER AGENTS:</div>
           <div className="mb-1">- Researcher: Access to arXiv API, Google Scholar. Output: List of 5+ recent papers with key findings, citations in APA format.</div>
           <div className="mb-1">- Writer: Access to brand voice guidelines, outline, researcher output. Output: 1000-word draft following outline, brand voice score ≥ 90%.</div>
           <div className="mb-1">- Editor: Access to Grammarly API, style guides. Output: Edited draft with change log, readability score ≥ 60 (Flesch scale).</div>
           <div className="mb-1">- SEO Specialist: Access to Google Keyword Planner. Output: SEO score ≥ 85, list of 3+ high-volume keywords to include.</div>
           <div className="text-[var(--accent-text)]">COMMUNICATION RULES:</div>
-          <div className="mb-2">Agents pass outputs via shared state at key "tasks/{taskId}/output". Coordinator polls state every 30s for completion. All messages use JSON schema v1.3.</div>
+          <div className="mb-2">Agents pass outputs via shared state at key {`"tasks/{taskId}/output"`}. Coordinator polls state every 30s for completion. All messages use JSON schema v1.3.</div>
           <div className="text-[var(--accent-text)]">CONSTRAINTS:</div>
           <div className="mb-2">No agent can modify another agent's output directly; all changes must go through coordinator. Max 2 retries per subtask before escalation to human editor.</div>
         </div>
@@ -136,7 +136,7 @@ class MultiAgentSystem {
             <li>Define strict role boundaries: No overlapping responsibilities. Each agent should have a single, measurable job to prevent duplicate work and conflicting outputs.</li>
             <li>Standardize message schemas: All inter-agent communication must use the same JSON/Protobuf schema to avoid parsing errors and data incompatibility.</li>
             <li>Specify dependency ordering: Explicitly define which tasks must complete before others can start to prevent race conditions and null dependency errors.</li>
-            <li>Include deadlock resolution: Define timeout rules (e.g., "if task is pending for >10 minutes, reassign to backup agent") to handle agents that crash or hang.</li>
+            <li>Include deadlock resolution: Define timeout rules (e.g., "if task is pending for {'>'}10 minutes, reassign to backup agent") to handle agents that crash or hang.</li>
             <li>Test with agent failures: Include scenarios where worker agents return errors or crash in your spec validation to ensure retry and escalation logic works.</li>
             <li>Limit shared state scope: Only persist data that multiple agents need to access. Excess shared state increases latency and conflict risk.</li>
           </ul>

@@ -33,7 +33,7 @@ export default function ToolUsagePage() {
           Parameter schemas must be strict and self-documenting. Use enums instead of free-text strings whenever possible (e.g., "units" parameter with enum ["celsius", "fahrenheit"] rather than a string description). Add regex patterns for structured inputs like email addresses, phone numbers, or ISO date strings. Include min/max constraints for numeric parameters (e.g., "temperature must be between -50 and 50 when units are celsius"). These constraints reduce parameter hallucinations and make validation failures more informative for retry logic.
         </p>
         <p className="text-[var(--text-secondary)] mb-4">
-          Tool output formatting is equally important. If a tool returns raw JSON, the LLM must understand how to interpret it. Specs should define standard output wrappers: successful calls return {"status": "success", "data": ...}, errors return {"status": "error", "code": "...", "message": "..."}. The LLM can then branch on status rather than attempting to parse heterogeneous output formats. For tools returning large datasets, specs should define truncation rules (e.g., "return max 10 results; include total_count field indicating if more exist") to prevent context window overflow.
+          Tool output formatting is equally important. If a tool returns raw JSON, the LLM must understand how to interpret it. Specs should define standard output wrappers: successful calls return {`{"status": "success", "data": ...}`}, errors return {`{"status": "error", "code": "...", "message": "..."}`}. The LLM can then branch on status rather than attempting to parse heterogeneous output formats. For tools returning large datasets, specs should define truncation rules (e.g., "return max 10 results; include total_count field indicating if more exist") to prevent context window overflow.
         </p>
         <p className="text-[var(--text-secondary)] mb-4">
           Multi-tool workflows require dependency specs: tool B might require output from tool A. The LLM needs to know these dependencies explicitly. For example, "the get_order_details tool requires a valid order_id from a previous list_recent_orders call" prevents the LLM from attempting to call get_order_details with a user-provided string that hasn't been validated against the system's order database.
@@ -130,11 +130,11 @@ export default function ToolUsagePage() {
         <h2 className="text-2xl font-bold mb-4">Tips for Tool Usage Specs</h2>
         <div className="bg-[var(--surface)] border border-[var(--border)] rounded-lg p-6 mb-6">
           <ul className="list-disc pl-6 text-[var(--text-secondary)] space-y-3">
-            <li>Write tool descriptions as instructions to the LLM: include "Use this tool when...", "Do not use for...", and "Requires {prerequisite tool} output" to guide correct invocation timing.</li>
+            <li>Write tool descriptions as instructions to the LLM: include "Use this tool when...", "Do not use for...", and "Requires {'{'}prerequisite tool{'}'} output" to guide correct invocation timing.</li>
             <li>Use strict parameter schemas with enums, regex patterns, and numeric ranges. Free-text parameters should have max length limits to prevent context overflow.</li>
             <li>Define standard output formats across all tools: {"{status: 'success'|'error', data?, message?}"} so the LLM can branch on status without parsing heterogeneous formats.</li>
             <li>Specify tool ordering dependencies explicitly: "Tool B requires output from Tool A" prevents the LLM from calling tools with unvalidated parameters.</li>
-            <li>Include retry logic with parameter correction: when a tool returns an error, instruct the LLM to "adjust {parameter} and retry once before escalating to the user".</li>
+            <li>Include retry logic with parameter correction: when a tool returns an error, instruct the LLM to "adjust {`{parameter}`}" and retry once before escalating to the user.</li>
             <li>Set maximum tool call iterations (typically 5-10) to prevent infinite loops and runaway API costs from agents that continuously call tools without progressing.</li>
           </ul>
         </div>

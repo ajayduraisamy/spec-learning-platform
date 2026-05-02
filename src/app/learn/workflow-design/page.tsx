@@ -30,7 +30,7 @@ export default function WorkflowDesignPage() {
           Every functional workflow consists of five mandatory components: steps, transitions, triggers, data schemas, and error handlers. Steps are atomic units of work with single responsibilities—each step has a defined tool or agent, input schema, output schema, and timeout. Transitions define the execution order: linear (Step A → Step B → Step C), conditional (if Step A output.status = "approved", go to Step B; else go to Step C), or parallel (Steps B and C run simultaneously after Step A completes). Specs for transitions use explicit, deterministic conditions rather than LLM-driven decisions to maintain workflow predictability.
         </p>
         <p className="text-[var(--text-secondary)] mb-4">
-          Triggers define what initiates a workflow instance: user actions (clicking "submit claim"), scheduled times (every Friday at 5 PM for payroll processing), or external events (webhook from Stripe on successful payment). Specs define trigger validation rules: "on payment_webhook, validate Stripe signature, extract order_id and amount, reject if amount < 0.01". Data schemas define the shape of data passed between steps: "Step A outputs { order_id: string, total: number, currency: enum['USD','EUR'] }, Step B requires order_id and total as inputs". Mismatched schemas are a leading cause of workflow failures, so specs include JSON Schema validation rules for every inter-step data transfer.
+          Triggers define what initiates a workflow instance: user actions (clicking "submit claim"), scheduled times (every Friday at 5 PM for payroll processing), or external events (webhook from Stripe on successful payment). Specs define trigger validation rules: "on payment_webhook, validate Stripe signature, extract order_id and amount, reject if amount {'<'} 0.01". Data schemas define the shape of data passed between steps: {`"Step A outputs { order_id: string, total: number, currency: enum['USD','EUR'] }, Step B requires order_id and total as inputs"`}. Mismatched schemas are a leading cause of workflow failures, so specs include JSON Schema validation rules for every inter-step data transfer.
         </p>
         <p className="text-[var(--text-secondary)] mb-4">
           Error handlers define behavior when a step fails: retry with backoff, skip to a fallback step, roll back previous steps, or escalate to human oversight. Specs define retry limits (max 3 retries, 5s initial delay with 2x backoff), escalation thresholds (escalate if step fails 3 consecutive times or timeout exceeds 30 minutes), and rollback logic (if publish step fails, revert document status to "draft"). Without explicit error handlers, a single failed API call or LLM timeout can break the entire workflow and leave the system in an inconsistent state.
@@ -49,17 +49,17 @@ export default function WorkflowDesignPage() {
           <div className="text-[var(--accent-text)]">WORKFLOW: Content Publishing v2.0</div>
           <div className="mb-2">TRIGGER: User clicks "Submit for Review" in CMS</div>
           <div className="text-[var(--accent-text)]">STEPS:</div>
-          <div className="mb-1">1. Draft Review: Input {draft_id}, Tool: writer agent. Output {approved: bool, edit_log}. Timeout: 15m. Max 2 revisions.</div>
-          <div className="mb-1">2. Legal Check: Input {draft_content}, Tool: legal API. Output {compliant: bool, issues: []}. Timeout: 30m.</div>
-          <div className="mb-1">3. Manager Approval: Input {draft_content, legal_report}, Human step. Output {approved: bool, feedback}. Timeout: 24h.</div>
-          <div className="mb-1">4. Publish: Input {approved_draft}, Tool: CMS API. Output {url: string, publish_time}.</div>
+          <div className="mb-1">1. Draft Review: Input {'{'}draft_id{'}'}, Tool: writer agent. Output {'{'}approved: bool, edit_log{'}'}. Timeout: 15m. Max 2 revisions.</div>
+          <div className="mb-1">2. Legal Check: Input {'{'}draft_content{'}'}, Tool: legal API. Output {'{'}compliant: bool, issues: []{'}'}. Timeout: 30m.</div>
+          <div className="mb-1">3. Manager Approval: Input {'{'}draft_content, legal_report{'}'}, Human step. Output {'{'}approved: bool, feedback{'}'}. Timeout: 24h.</div>
+          <div className="mb-1">4. Publish: Input {'{'}approved_draft{'}'}, Tool: CMS API. Output {'{'}url: string, publish_time{'}'}.</div>
           <div className="text-[var(--accent-text)]">TRANSITIONS:</div>
           <div className="mb-1">Draft Review → Legal Check (approved=true)</div>
-          <div className="mb-1">Draft Review → Draft Review (approved=false, revision_count < 2)</div>
+          <div className="mb-1">Draft Review → Draft Review (approved=false, revision_count {'<'} 2)</div>
           <div className="mb-1">Legal Check → Manager Approval (compliant=true)</div>
           <div className="mb-1">Legal Check → Draft Review (compliant=false, auto-fix possible)</div>
           <div className="mb-1">Manager Approval → Publish (approved=true)</div>
-          <div className="mb-1">Manager Approval → Draft Review (approved=false, revision_count < 1)</div>
+          <div className="mb-1">Manager Approval → Draft Review (approved=false, revision_count {'<'} 1)</div>
           <div className="text-[var(--accent-text)]">ERROR HANDLING:</div>
           <div>Any step: retry 2x on timeout/API error, then escalate to content-ops@company.com</div>
         </div>
@@ -142,7 +142,7 @@ class WorkflowEngine {
           Customer onboarding workflow: signup form → email verification → KYC document upload → KYC review (agent) → assign account manager → send welcome kit. Triggers on signup form submission, transitions based on KYC status (approved/rejected/incomplete). Specs define KYC retry limits: "max 3 document resubmissions; escalate to compliance team after 3rd rejection". Welcome kit step only triggers after all previous steps complete successfully.
         </p>
         <p className="text-[var(--text-secondary)] mb-4">
-          Invoice processing workflow: receive invoice PDF → OCR extraction → PO match → manager approval (if amount > $1000) → payment API call → send confirmation email. Error handling: "if PO match fails, send email to vendor for corrected invoice; if payment API fails, retry 2x then alert finance team". Specs define data retention: "store invoice PDFs for 7 years per tax regulations; delete intermediate OCR data after 90 days".
+          Invoice processing workflow: receive invoice PDF → OCR extraction → PO match → manager approval (if amount {'>'} $1000) → payment API call → send confirmation email. Error handling: "if PO match fails, send email to vendor for corrected invoice; if payment API fails, retry 2x then alert finance team". Specs define data retention: "store invoice PDFs for 7 years per tax regulations; delete intermediate OCR data after 90 days".
         </p>
       </section>
 

@@ -66,7 +66,7 @@ export default function ContributePage() {
                   a sandbox to work in without affecting the main codebase.
                 </p>
                 <div className="mt-3 rounded-md bg-[var(--surface-overlay)] p-3 font-mono text-xs text-[var(--accent-text)] border border-[var(--border)]">
-                  git clone https://github.com/your-username/specengine.git
+                  git clone https://github.com/ajayduraisamy/spec-learning-platform.git
                 </div>
               </div>
             </div>
@@ -118,7 +118,7 @@ export default function ContributePage() {
                 </p>
                 <div className="mt-3 rounded-md bg-[var(--surface-overlay)] p-3 font-mono text-xs text-[var(--accent-text)] border border-[var(--border)]">
                   <p>git add .</p>
-                  <p>git commit -m "feat: add OAuth2 spec template"</p>
+                  <p>git commit -m "feat: add spec template"</p>
                   <p>git push origin your-branch</p>
                   <p className="text-[var(--text-tertiary)]">
                     # Then open PR on GitHub
@@ -183,7 +183,7 @@ export default function ContributePage() {
               Star the repo, fork it, and start contributing today.
             </p>
             <a
-              href="https://github.com"
+              href="https://github.com/ajayduraisamy/spec-learning-platform"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-6 inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface-raised)] px-6 py-3 text-sm font-semibold text-[var(--text-primary)] transition-all hover:border-[var(--border-hover)] hover:bg-[var(--surface-overlay)] hover:-translate-y-0.5"

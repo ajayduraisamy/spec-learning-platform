@@ -107,7 +107,7 @@ Never guess. Always use error codes for exceptional cases.`}
           <p className="text-[var(--accent-text)] font-medium">Error Handling Tips:</p>
           <ul className="list-disc list-inside text-[var(--text-secondary)] mt-2 space-y-1">
             <li>Always implement exponential backoff with jitter—retrying immediately after rate limits makes things worse</li>
-            <li>Design specs to return structured errors ({"error": "reason"}) rather than silently failing or hallucinating</li>
+            <li>Design specs to return structured errors ({'{'}"error": "reason"{'}'}) rather than silently failing or hallucinating</li>
             <li>Set up alerts BEFORE you need them—debugging production errors without monitoring is painful</li>
             <li>Test your error handling by intentionally breaking things: disconnect network, send malformed inputs, exceed rate limits</li>
             <li>Cache successful responses when possible—serving from cache during outages is the ultimate fallback</li>

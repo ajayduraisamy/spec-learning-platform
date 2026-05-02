@@ -86,7 +86,7 @@ Step 1:`}
       <section>
         <h2 className="text-2xl font-bold mb-4">Output Format and Validation Patterns</h2>
         <p className="text-[var(--text-secondary)] mb-4">
-          Structured output patterns enforce machine-readable formats like JSON, YAML, or XML. These patterns include explicit schema definitions, example outputs, and validation instructions. JSON patterns are most common for data extraction: "Output valid JSON matching this schema: { 'items': [{ 'name': string, 'price': number }] }." Including the schema in the prompt reduces malformed output rates from ~15% to under 2% for most models.
+          Structured output patterns enforce machine-readable formats like JSON, YAML, or XML. These patterns include explicit schema definitions, example outputs, and validation instructions. JSON patterns are most common for data extraction: {`"Output valid JSON matching this schema: { 'items': [{ 'name': string, 'price': number }] }."`} Including the schema in the prompt reduces malformed output rates from ~15% to under 2% for most models.
         </p>
         <p className="text-[var(--text-secondary)] mb-4">
           Validation wrapper patterns instruct the model to self-check outputs before returning them. "Generate the response, then verify it meets all constraints. If not, regenerate." This two-pass approach catches missing fields, format violations, and constraint breaches. More advanced patterns use separate validation prompts: generate output with one prompt, then validate with a second "Does this output meet the schema?" prompt that can trigger regeneration.
